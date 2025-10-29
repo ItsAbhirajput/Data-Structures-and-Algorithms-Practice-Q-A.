@@ -1,0 +1,37 @@
+/**
+ * BubbleSort.java
+ * 
+ * A simple implementation of the Bubble Sort algorithm in Java.
+ * 
+ * This program sorts an integer array in ascending order using
+ * the Bubble Sort technique and prints the sorted elements.
+ * 
+ */
+
+public class BubbleSort {
+
+    public static void main(String[] args) {
+
+        // Input array
+        int arr[] = {3, 7, 9, 4, 6, 5, 1, 8};
+
+        // Bubble Sort algorithm
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap adjacent elements if they are in the wrong order
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        // Print the sorted array
+        System.out.println("Sorted Array (Ascending Order):");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println(); // For new line
+    }
+}
