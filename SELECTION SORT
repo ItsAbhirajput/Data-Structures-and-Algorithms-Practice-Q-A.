@@ -1,0 +1,47 @@
+/*
+ * SelectionSort.java
+ * 
+ * A simple implementation of the Selection Sort algorithm in Java.
+ * 
+ * This program sorts an integer array in ascending order using
+ * the Selection Sort technique and prints the sorted array.
+ */
+
+public class selectionsort {
+
+    public static void main(String[] args) {
+
+        // Input array
+        int arr[] = {3, 7, 9, 4, 6, 5, 1, 8};
+
+        // n=8;
+        int n = arr.length;
+
+        // Selection Sort algorithm i loop run at 0 to 7 mean 7 times
+        for (int i = 0; i < n - 1; i++) {
+            // Assume the first element of the unsorted part is the minimum
+            int minIndex = i;
+
+            // Find the minimum element in the unsorted part j run from index 1 to 8 mean 7 times 
+            for (int j = i + 1; j < n; j++) {
+                // index 1 < index 0 
+                if (arr[j] < arr[minIndex]) {
+                    // get the minimum number index in minIndex
+                    minIndex = j;
+                }
+            }
+
+            // Swap the found minimum with the first element of the unsorted part
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
+
+        // Print the sorted array
+        System.out.println("Sorted Array (Ascending Order):");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
