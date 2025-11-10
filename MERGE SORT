@@ -1,0 +1,70 @@
+public class MergeSort {
+
+    // 1️⃣ This function divides the array into smaller parts
+    public static void divide(int[] arr, int si, int ei) {
+        // Base case: if the start index >= end index, stop recursion
+        if (si >= ei) {
+            return;
+        }
+
+        // Find the middle index
+        int mid = si + (ei - si) / 2;
+
+        // Recursively divide the left half
+        divide(arr, si, mid);
+
+        // Recursively divide the right half
+        divide(arr, mid + 1, ei);
+
+        // Merge the two sorted halves
+        merge(arr, si, mid, ei);
+    }
+
+    // 2️⃣ This function merges two sorted parts of the array
+    public static void merge(int[] arr, int si, int mid, int ei) {
+        // Temporary array to store the merged result
+        int[] tempArr = new int[ei - si + 1];
+
+        int leftIndex = si;      // pointer for left half
+        int rightIndex = mid + 1; // pointer for right half
+        int k = 0;               // pointer for tempArr
+
+        // Merge elements from both halves in sorted order
+        while (leftIndex <= mid && rightIndex <= ei) {
+            if (arr[leftIndex] <= arr[rightIndex]) {
+                tempArr[k++] = arr[leftIndex++];  // take from left half
+            } else {
+                tempArr[k++] = arr[rightIndex++]; // take from right half
+            }
+        }
+
+        // Copy remaining elements from left half (if any)
+        while (leftIndex <= mid) {
+            tempArr[k++] = arr[leftIndex++];
+        }
+
+        // Copy remaining elements from right half (if any)
+        while (rightIndex <= ei) {
+            tempArr[k++] = arr[rightIndex++];
+        }
+
+        // Copy the sorted tempArr back into the original array
+        for (int i = 0; i < tempArr.length; i++) {
+            arr[si + i] = tempArr[i];
+        }
+    }
+
+    // 3️⃣ Main function to run the code
+    public static void main(String[] args) {
+        int arr[] = {7, 4, 6, 3, 8, 2, 5};
+
+        // Start the merge sort
+        divide(arr, 0, arr.length - 1);
+
+        // Print the sorted array
+        System.out.println("Sorted array:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
